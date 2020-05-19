@@ -5,6 +5,7 @@ export const changeInput = (newTerm) => ({
     newTerm
 });
 
-export const fetchWeather = () => ({
-  type: FETCH_WEATHER
+export const fetchWeather = (city) => ({
+  type: FETCH_WEATHER,
+  payload: city
 });

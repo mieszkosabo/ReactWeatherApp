@@ -7,7 +7,7 @@ export const Searchbar = () => {
   const onTermChange = (newTerm) => dispatch(changeInput(newTerm));
   const onFormSubmit = (event) => {
     event.preventDefault();
-    dispatch(fetchWeather());
+    dispatch(fetchWeather(event.target.value));
   }
 
   return (

@@ -4,5 +4,6 @@ import { Searchbar } from '../searchbar';
 export const App = () => (
     <div className="App">
         <Searchbar />
+        <WeatherDisplay />
     </div>
 );
