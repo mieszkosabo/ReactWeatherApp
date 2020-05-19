@@ -1,10 +1,15 @@
-import { EMPTY_TERM, INPUT_CHANGE } from './const';
-import { FromJS } from 'immutable';
+import { EMPTY_TERM, INPUT_CHANGE } from '../const';
+import { fromJS } from 'immutable';
 
-const initialSearchbarState = FromJS({ term: EMPTY_TERM});
+const initialSearchbarState = fromJS({ term: EMPTY_TERM });
 
-const searchbarReducer = (state = initialSearchbarState, action) => {
-  switch (action.type) {
-    case INPUT_CHANGE:
-  }
-}
+export const searchbarReducer = (state = initialSearchbarState, action) => {
+    switch (action.type) {
+        case INPUT_CHANGE: {
+            const { newTerm } = action;
+            return state.setIn(['term'], newTerm);
+        }
+        default:
+            return state;
+    }
+};
