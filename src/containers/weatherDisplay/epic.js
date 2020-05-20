@@ -1,22 +1,24 @@
 import { ajax } from "rxjs/ajax";
-import { weatherReady } from "./actions";
+import { weatherReady, fetchWeatherRejected } from "./actions";
 import { FETCH_WEATHER } from "../const";
 import { API_URL, API_KEY } from "../../APIconfig";
-import { mergeMap, map } from "rxjs/operators";
+import { mergeMap, map, catchError } from "rxjs/operators";
+import { of } from "rxjs";
 import { ofType } from "redux-observable";
 
 export const fetchWeatherEpic = (action$) =>
   action$.pipe(
     ofType(FETCH_WEATHER),
-    mergeMap((action) => {
-      //TODO: remove this
-      console.log(
-        `${API_URL}${action.payload.replace(/ /g, "+")}&appid=${API_KEY}`
-      );
-      return ajax
+    mergeMap((action) =>
+      ajax
         .getJSON(
-          `${API_URL}${action.payload.replace(/ /g, "+")}&appid=${API_KEY}`
+          `${API_URL}${action.payload
+            .trim()
+            .replace(/ /g, "+")}&appid=${API_KEY}`
         )
-        .pipe(map((response) => weatherReady(response)));
-    })
+        .pipe(
+          map((response) => weatherReady(response)),
+          catchError((error) => of(fetchWeatherRejected(error)))
+        )
+    )
   );

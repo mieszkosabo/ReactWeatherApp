@@ -4,5 +4,5 @@ import { useSelector } from "react-redux";
 export const WeatherDisplay = () => {
   const data = useSelector(dataSelector);
 
-  return <div>{data}</div>;
+  return <div>{JSON.stringify(data)}</div>;
 };

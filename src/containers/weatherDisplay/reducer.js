@@ -1,4 +1,4 @@
-import { FETCH_WEATHER, WEATHER_READY, EMPTY_TERM } from "../const";
+import { FETCH_WEATHER, WEATHER_READY, FETCH_WEATHER_REJECTED } from "../const";
 import { fromJS } from "immutable";
 
 const initialWeatherState = fromJS({
@@ -12,6 +12,9 @@ export const weatherDisplayReducer = (state = initialWeatherState, action) => {
     }
     case WEATHER_READY: {
       return state.set("data", action.payload);
+    }
+    case FETCH_WEATHER_REJECTED: {
+      return state.set("data", "ERROR WHILE FETCHING");
     }
     default:
       return state;

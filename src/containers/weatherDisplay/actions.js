@@ -1,4 +1,4 @@
-import { WEATHER_READY, FETCH_WEATHER } from "../const";
+import { WEATHER_READY, FETCH_WEATHER, FETCH_WEATHER_REJECTED } from "../const";
 
 export const fetchWeather = (city) => ({
   type: FETCH_WEATHER,
@@ -8,4 +8,9 @@ export const fetchWeather = (city) => ({
 export const weatherReady = (data) => ({
   type: WEATHER_READY,
   payload: data,
+});
+
+export const fetchWeatherRejected = (error) => ({
+  type: FETCH_WEATHER_REJECTED,
+  payload: error,
 });
