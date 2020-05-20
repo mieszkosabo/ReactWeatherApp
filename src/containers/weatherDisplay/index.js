@@ -1,12 +1,8 @@
 import React from "react";
-import { getData } from "./selectors";
-
+import { dataSelector } from "./selectors";
+import { useSelector } from "react-redux";
 export const WeatherDisplay = () => {
-  const data = useSelector(getData);
+  const data = useSelector(dataSelector);
 
-  return (
-    <h5>
-        ${data}
-    </h5>
-  );
+  return <div>{data}</div>;
 };

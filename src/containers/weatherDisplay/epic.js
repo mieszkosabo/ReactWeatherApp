@@ -5,12 +5,18 @@ import { API_URL, API_KEY } from "../../APIconfig";
 import { mergeMap, map } from "rxjs/operators";
 import { ofType } from "redux-observable";
 
-export const fetchWeatherEpic = action$ =>
+export const fetchWeatherEpic = (action$) =>
   action$.pipe(
     ofType(FETCH_WEATHER),
-    mergeMap(action =>
-      ajax
-        .getJSON(`${API_URL}${action.payload}&appid=${API_KEY}`)
-        .pipe(map(response => weatherReady(response)))
-    )
+    mergeMap((action) => {
+      //TODO: remove this
+      console.log(
+        `${API_URL}${action.payload.replace(/ /g, "+")}&appid=${API_KEY}`
+      );
+      return ajax
+        .getJSON(
+          `${API_URL}${action.payload.replace(/ /g, "+")}&appid=${API_KEY}`
+        )
+        .pipe(map((response) => weatherReady(response)));
+    })
   );

@@ -1,5 +1,13 @@
 import { createSelector } from "reselect";
+import { prop } from "rambda";
 
-const data = state => state;
+const getData = prop("weatherDisplayReducer"); //TODO: zamienić na stałe
+const getCity = prop("searchbarReducer");
 
-export const getData = createSelector(data, state => state.get('data'));
+export const dataSelector = createSelector(getData, (state) =>
+  state.get("data")
+);
+
+export const citySelector = createSelector(getCity, (state) =>
+  state.get("term")
+);
