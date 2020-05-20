@@ -1,68 +1,44 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Final assignment
 
-## Available Scripts
+Create an application that connects to [OpenWearherMap API](https://openweathermap.org/api) and allows for forecasts search. Requirements:
+  - Don't use external design systems - create styled-components by yourself. Aesthetics won't be rated, only components decomposition. You can even use existing CSS (e.g., from bootstrap or material) and copy it to your components. The website doesn't have to be responsive or support mobile in any way
+  - Forecast search options:
+      - search forecast by city, autocomplete city name
+        * [supported cities list](http://bulk.openweathermap.org/sample/city.list.json.gz) - you can embed it as a website asset
+        * [react-autocomplete](https://github.com/reactjs/react-autocomplete) (you can use the library of your choice)
+      - forecast for [user's geolocation](https://www.w3schools.com/html/html5_geolocation.asp) (we assume that the user always accepts geolocalization access query)
+      - switch for choosing forecast option type: 5 day / 3 hour or 16 day
+  - results should be cached until page refresh - if a user queries for the same parameters, data should be taken from redux instead of API call
+  - show loader while the search is in progress, you can use an [external library](https://github.com/mhnpd/react-loader-spinner)
+  - display weather-related icon. [Flaticon](https://www.flaticon.com/) is a great free [SVG](https://css-tricks.com/using-svg/) icons source
+  - display information if the weather will be nice. Nice weather attributes:
+      * no rainy days
+      * the average temperature between 18 and 25 degrees
+      * the temperature never drops below 15 or raises above 30 degrees
+      * "Nice" weather has all these attributes, "passable" weather has 2 out of 3 attributes and "not nice" weather has 1 or 0 attributes
+  - display gif depicting weather. Use [tenor gif API](https://tenor.com/gifapi/documentation#quickstart) for gif URL search. Use the most popular "description" field value as keywords, e.g. [clear sky](https://api.tenor.com/v1/search?q=clear%20sky)
+  - switch gif every 30 seconds
+  - enable light and dark mode
 
-In the project directory, you can run:
+### Evaluation:
 
-### `npm start`
+You may get 50 points in total. Rates:
+  - 45-50 points = 5
+  - 35-44 points = 4
+  - 25-34 points = 3
+  - 0-24 points = 2
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
-
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
-
-### `npm test`
-
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
-
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
-
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+Points values:
+  - [5 pts] redux structure
+  - [5 pts] epics and selectors usage
+  - [5 pts] code structure: clear containers and components distinction
+  - [3 pts] code style
+  - [5 pts] search by city
+  - [5 pts] search by user geolocation
+  - [2 pts] 5 day / 3 hour or 16 day switch
+  - [3 pts] search results caching
+  - [1 pt] loader
+  - [3 pts] nice weather classification
+  - [5 pts] gif support
+  - [3 pts] gif switching
+  - [5 pts] light/dark mode
