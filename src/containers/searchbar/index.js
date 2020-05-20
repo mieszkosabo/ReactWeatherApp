@@ -2,6 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeInput, fetchWeather } from "./actions";
 import { citySelector } from "../weatherDisplay/selectors";
+import { Input } from "./components";
 
 export const Searchbar = () => {
   const dispatch = useDispatch();
@@ -10,13 +11,12 @@ export const Searchbar = () => {
   const onFormSubmit = (event, city) => {
     event.preventDefault();
     dispatch(fetchWeather(city));
-  }
+  };
 
   return (
     <form className="searchbar" onSubmit={(event) => onFormSubmit(event, city)}>
-      <input
+      <Input
         placeholder="ayo lets go"
-        className="input-class"
         onChange={(event) => onTermChange(event.target.value)}
       />
       <span className="submit-btn">

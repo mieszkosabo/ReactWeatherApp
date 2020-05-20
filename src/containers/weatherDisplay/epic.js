@@ -1,7 +1,7 @@
 import { ajax } from "rxjs/ajax";
 import { weatherReady, fetchWeatherRejected } from "./actions";
 import { FETCH_WEATHER } from "../const";
-import { API_URL, API_KEY } from "../../APIconfig";
+import { API_URL, API_KEY } from "../../assets/api_config";
 import { mergeMap, map, catchError } from "rxjs/operators";
 import { of } from "rxjs";
 import { ofType } from "redux-observable";

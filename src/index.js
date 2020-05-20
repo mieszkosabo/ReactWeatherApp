@@ -5,7 +5,6 @@ import { createStore, compose, applyMiddleware } from "redux";
 import { createEpicMiddleware } from "redux-observable";
 import createReducer from "./reducer";
 import { rootEpic } from "./epic";
-import "./index.css";
 import { App } from "./containers/app";
 
 //TODO: przerzucić konfigurację stora do innego pliku
