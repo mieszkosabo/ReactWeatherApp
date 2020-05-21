@@ -19,11 +19,9 @@ export const Searchbar = () => {
         placeholder="ayo lets go"
         onChange={(event) => onTermChange(event.target.value)}
       />
-      <span className="submit-btn">
         <button type="submit" className="btn btn-secondary">
           Submit
         </button>
-      </span>
     </form>
   );
 };

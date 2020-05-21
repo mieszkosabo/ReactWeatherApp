@@ -11,7 +11,8 @@ export const weatherDisplayReducer = (state = initialWeatherState, action) => {
       return state.set("data", "fetching!");
     }
     case WEATHER_READY: {
-      return state.set("data", action.payload);
+      console.log(action.payload);
+      return state.set("data", "git");
     }
     case FETCH_WEATHER_REJECTED: {
       return state.set("data", "ERROR WHILE FETCHING");

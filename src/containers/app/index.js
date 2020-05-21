@@ -3,12 +3,14 @@ import { Searchbar } from "../searchbar";
 import { WeatherDisplay } from "../weatherDisplay";
 import { ThemeProvider } from "styled-components";
 import { lightTheme } from "../../themes";
+import { GlobalStyle } from "../../globalStyles";
 
 export const App = () => (
   <ThemeProvider theme={lightTheme}>
-    <div className="App">
+    <>
+      <GlobalStyle />
       <Searchbar />
       <WeatherDisplay />
-    </div>
+    </>
   </ThemeProvider>
 );

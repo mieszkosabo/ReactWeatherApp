@@ -1,7 +1,7 @@
 import { ajax } from "rxjs/ajax";
 import { weatherReady, fetchWeatherRejected } from "./actions";
 import { FETCH_WEATHER } from "../const";
-import { API_URL, API_KEY } from "../../assets/api_config";
+import { API_URL, API_KEY, API_URL_16, API_URL_5_3 } from "../../assets/api_config";
 import { mergeMap, map, catchError } from "rxjs/operators";
 import { of } from "rxjs";
 import { ofType } from "redux-observable";
@@ -12,9 +12,9 @@ export const fetchWeatherEpic = (action$) =>
     mergeMap((action) =>
       ajax
         .getJSON(
-          `${API_URL}${action.payload
+          `${API_URL_5_3}${action.payload
             .trim()
-            .replace(/ /g, "+")}&appid=${API_KEY}`
+            .replace(/ /g, "+")}&cnt=7&appid=${API_KEY}`
         )
         .pipe(
           map((response) => weatherReady(response)),
