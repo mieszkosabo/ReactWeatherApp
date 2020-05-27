@@ -2,7 +2,7 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { changeInput, fetchWeather } from "./actions";
 import { citySelector } from "../weatherDisplay/selectors";
-import { Input } from "./components";
+import { Input, Button } from "./components";
 
 export const Searchbar = () => {
   const dispatch = useDispatch();
@@ -13,15 +13,14 @@ export const Searchbar = () => {
     dispatch(fetchWeather(city));
   };
 
+  //TODO: autocomplete
   return (
     <form className="searchbar" onSubmit={(event) => onFormSubmit(event, city)}>
       <Input
         placeholder="ayo lets go"
         onChange={(event) => onTermChange(event.target.value)}
       />
-        <button type="submit" className="btn btn-secondary">
-          Submit
-        </button>
+      <Button /> 
     </form>
   );
 };

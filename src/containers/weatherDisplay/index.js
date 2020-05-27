@@ -2,10 +2,10 @@ import React from "react";
 import { dataSelector } from "./selectors";
 import { useSelector } from "react-redux";
 import Loader from 'react-loader-spinner'
+import { responesToDaily } from "../../utils/response-utils";
 
 export const WeatherDisplay = () => {
   const data = useSelector(dataSelector);
-
   return (
     <>
     <Loader
@@ -15,7 +15,7 @@ export const WeatherDisplay = () => {
 	     width={100}
        visible={data === 'fetching!'}
 	  />
-  <div>{JSON.stringify(data)}</div>
+  {/* <div>{data)}</div> */}
   </>
   );
 };
