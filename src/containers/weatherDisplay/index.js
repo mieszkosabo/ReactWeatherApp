@@ -2,7 +2,7 @@ import React from "react";
 import { dataSelector } from "./selectors";
 import { useSelector } from "react-redux";
 import Loader from 'react-loader-spinner'
-import { responesToDaily } from "../../utils/response-utils";
+import { DayCard } from "./components/dayCard";
 
 export const WeatherDisplay = () => {
   const data = useSelector(dataSelector);
@@ -15,7 +15,7 @@ export const WeatherDisplay = () => {
 	     width={100}
        visible={data === 'fetching!'}
 	  />
-  {/* <div>{data)}</div> */}
+  <DayCard />
   </>
   );
 };

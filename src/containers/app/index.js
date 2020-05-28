@@ -10,9 +10,8 @@ export const App = () => (
   <ThemeProvider theme={lightTheme}>
     <>
       <GlobalStyle />
-      {/* <Searchbar />
-      <WeatherDisplay /> */
-      parseResponse(sample, 5)}
+      {/* <Searchbar /> */}
+      <WeatherDisplay /> 
     </>
   </ThemeProvider>
 );
