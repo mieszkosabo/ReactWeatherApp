@@ -1,5 +1,6 @@
 import React from 'react';
+import { TenorWrapper } from './TenorWrapper';
 
 export const TenorGif = ({url}) => (
-  <img src={url}></img>
+  <TenorWrapper src={url} />
 )

@@ -9,7 +9,14 @@ export const createAPICallCity = (cityName, exclude) => {
   return createAPICallCoordinates(lat, lon, exclude);
 };
 
+export const cityToID = (cityName) => {
+  const city = citiesList.find((city) => city.name.toUpperCase() === cityName.toUpperCase());
+  return city.id;
+};
+
 const cityToCoordinates = (cityName) => {
   const city = citiesList.find((city) => city.name.toUpperCase() === cityName.toUpperCase());
   return { lat: city.coord.lat, lon: city.coord.lon };
 };
+
+//TODO: odporność na błędy (try catche?)

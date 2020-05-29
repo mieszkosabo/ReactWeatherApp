@@ -10,7 +10,7 @@ export const App = () => (
   <ThemeProvider theme={lightTheme}>
     <>
       <GlobalStyle />
-      {/* <Searchbar /> */}
+      <Searchbar />
       <WeatherDisplay /> 
     </>
   </ThemeProvider>

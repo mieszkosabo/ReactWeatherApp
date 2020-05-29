@@ -5,7 +5,13 @@ import { CityNameHeader } from "../cityNameHeader";
 import { citiesList } from "../../../../assets";
 import { TenorGif } from '../TenorGif';
 
-const cityNameByID = (id) => citiesList.find((city) => city.id === id).name;
+const cityNameByID = (id) => {
+  console.log("id " + id);
+  return citiesList.find((city) => {
+    return city.id === id;
+  })
+    .name;
+}
 
 export const DayCard = ({ days }) => (
   <DayCardWrapper>
