@@ -1,30 +1,31 @@
 import React from "react";
+import { TableWrapper } from "./tableWrapper";
 
 export const Table = ({ days }) => (
-  <table>
-    <tr>
-      <td>DAY</td>
-      {days.map((day) => (
-        <td>{day.day}</td>
-      ))}
-    </tr>
-    <tr>
-    <td>MIN</td>
-    {days.map((day) => (
-        <td>{day.minTemp}</td>
-      ))}
-    </tr>
-    <tr>
-    <td>MAX</td>
-    {days.map((day) => (
-        <td>{day.maxTemp}</td>
-      ))}
-    </tr>
-    <tr>
-    <td>AVG</td>
-    {days.map((day) => (
-        <td>{day.avgTemp}</td>
-      ))}
-    </tr>
-  </table>
+  <TableWrapper>
+    <tbody>
+      <tr>
+        {days.map((day) => (
+          <th>{day.day}</th>
+        ))}
+      </tr>
+      <tr>
+        {days.map((day) => (
+          <td>{day.minTemp}</td>
+        ))}
+      </tr>
+      <tr>
+        {days.map((day) => (
+          <td>{day.maxTemp}</td>
+        ))}
+      </tr>
+      <tr>
+        {days.map((day) => (
+          <td>{day.avgTemp}</td>
+        ))}
+      </tr>
+    </tbody>
+  </TableWrapper>
 );
+
+//TODO: dodoać keys

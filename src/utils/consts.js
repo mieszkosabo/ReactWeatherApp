@@ -8,3 +8,4 @@ export const MIN_MAX_AVG = 18;
 export const NICE = 'NICE';
 export const PASSABLE = 'PASSABLE';
 export const NOT_NICE = "NOT NICE";
+export const TENOR_KEY = "V9HPZU9VUORY";

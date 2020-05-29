@@ -3,6 +3,7 @@ import { dataSelector } from "./selectors";
 import { useSelector } from "react-redux";
 import Loader from 'react-loader-spinner'
 import { DayCard } from "./components/dayCard";
+import { sample, parseResponse } from '../../utils/response-utils';
 
 export const WeatherDisplay = () => {
   const data = useSelector(dataSelector);
@@ -15,7 +16,7 @@ export const WeatherDisplay = () => {
 	     width={100}
        visible={data === 'fetching!'}
 	  />
-  <DayCard />
+  <DayCard days={parseResponse(sample, 756135)}/>
   </>
   );
 };

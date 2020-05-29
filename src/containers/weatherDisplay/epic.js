@@ -6,6 +6,8 @@ import { mergeMap, map, catchError } from "rxjs/operators";
 import { of } from "rxjs";
 import { ofType } from "redux-observable";
 
+
+//TODO: dodać request cancellation, gdy przyjdzie kolejne żądanie
 export const fetchWeatherEpic = (action$) =>
   action$.pipe(
     ofType(FETCH_WEATHER),
@@ -13,9 +15,6 @@ export const fetchWeatherEpic = (action$) =>
       ajax
         .getJSON(
           createAPICallCity(action.payload, 'current')
-          // `${API_URL_5_3}${action.payload
-          //   .trim()
-          //   .replace(/ /g, "+")}&cnt=7&appid=${API_KEY}`
         )
         .pipe(
           map((response) => weatherReady(response)),
@@ -23,3 +22,6 @@ export const fetchWeatherEpic = (action$) =>
         )
     )
   );
+
+  //TODO: dodać epica offType WEATHER_READY
+  // który robi ajaxa z tenorem odpowiednim.
