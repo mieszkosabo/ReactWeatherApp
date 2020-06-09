@@ -6,6 +6,7 @@ import { createEpicMiddleware } from "redux-observable";
 import createReducer from "./reducer";
 import { rootEpic } from "./epic";
 import { App } from "./containers/app";
+import { verifyUserInput } from './containers/weatherDisplay/middleware'
 
 //TODO: przerzucić konfigurację stora do innego pliku
 const DEBUG = true;
@@ -17,7 +18,7 @@ if (DEBUG) {
   store = createStore(
     reducer,
     undefined,
-    composeEnhancers(applyMiddleware(epicMiddleware))
+    composeEnhancers(applyMiddleware(verifyUserInput, epicMiddleware))
   ); // TODO:middleware wew composeEnhancer
 } else {
   composeEnhancers = compose;

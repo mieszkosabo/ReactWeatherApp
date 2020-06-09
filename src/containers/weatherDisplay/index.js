@@ -7,10 +7,9 @@ import { sample, parseResponse } from "../../utils/response-utils";
 
 export const WeatherDisplay = () => {
   const data = useSelector(dataSelector);
-  const cityID = useSelector(cityIDSelector);
 
   //TODO: zaminieć empty i fetching na stałe
-  if (data === "empty" || data === "fetching!") {
+  if (data === "empty" || data === "fetching!" || data == "ERROR WHILE FETCHING") {
     return (
       <>
         <Loader
@@ -32,7 +31,7 @@ export const WeatherDisplay = () => {
           width={100}
           visible={data === "fetching"}
         />
-        <DayCard days={parseResponse(data, cityID)} />
+        <DayCard days={data} />
       </>
     );
   }

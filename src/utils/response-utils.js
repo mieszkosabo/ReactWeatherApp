@@ -46,6 +46,6 @@ export const parseResponse = (sample, id) => {
 
   parsed.niceStatus.hourly = weatherNiceStatus(parsed.hourly);
 
-  console.log(parsed);
+  console.log("parsed", parsed);
   return parsed;
 };

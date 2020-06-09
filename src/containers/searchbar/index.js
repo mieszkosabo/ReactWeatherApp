@@ -1,6 +1,6 @@
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { changeInput, fetchWeather } from "./actions";
+import { changeInput, tryFetch } from "./actions";
 import { citySelector } from "../weatherDisplay/selectors";
 import { Input, Button } from "./components";
 
@@ -10,7 +10,7 @@ export const Searchbar = () => {
   const onTermChange = (newTerm) => dispatch(changeInput(newTerm));
   const onFormSubmit = (event, city) => {
     event.preventDefault();
-    dispatch(fetchWeather(city));
+    dispatch(tryFetch(city));
   };
 
   //TODO: autocomplete

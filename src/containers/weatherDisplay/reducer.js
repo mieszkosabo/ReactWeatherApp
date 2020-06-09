@@ -1,26 +1,34 @@
-import { FETCH_WEATHER, WEATHER_READY, FETCH_WEATHER_REJECTED } from "../const";
+import { FETCH_WEATHER, WEATHER_READY, FETCH_WEATHER_REJECTED, DISPLAY_CACHED } from "../const";
 import { fromJS } from "immutable";
 import { cityToID } from '../../utils/request-utils';
+import { parseResponse } from "../../utils/response-utils";
 
 export const WEATHER_DISPLAY_REDUCER = "weatherDisplayReducer";
 
 const initialWeatherState = fromJS({
   data: "empty",
   cityID: -1,
+  cached: [],
 });
 
 export const weatherDisplayReducer = (state = initialWeatherState, action) => {
   switch (action.type) {
     case FETCH_WEATHER: {
-      console.log("city to id: " + cityToID(action.payload));
-      return state.merge({data: "fetching!", cityID: cityToID(action.payload)});
+      return state.merge({data: "fetching!", cityID: action.payload});
     }
     case WEATHER_READY: {
       console.log(action.payload);
-      return state.set("data", action.payload);
+      const parsed = parseResponse(action.payload, state.get('cityID'));
+      console.log("parsed in rdy:", parsed);
+      return state
+        .update("cached", (cached) => [...cached, parsed])
+        .set("data", parsed);
     }
     case FETCH_WEATHER_REJECTED: {
       return state.set("data", "ERROR WHILE FETCHING");
+    }
+    case DISPLAY_CACHED: {
+      return state.set("data", action.payload);
     }
     default:
       return state;
