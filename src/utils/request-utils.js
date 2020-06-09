@@ -23,5 +23,3 @@ const IDToCoordinates = (city_id) => {
   const city = citiesList.find((city) => city.id === city_id);
   return { lat: city.coord.lat, lon: city.coord.lon };
 };
-
-//TODO: odporność na błędy (try catche?)

@@ -1,6 +1,5 @@
-import { FETCH_WEATHER, WEATHER_READY, FETCH_WEATHER_REJECTED, DISPLAY_CACHED } from "../const";
+import { FETCH_WEATHER, WEATHER_READY, FETCH_WEATHER_REJECTED, DISPLAY_CACHED, TENOR_READY } from "../const";
 import { fromJS } from "immutable";
-import { cityToID } from '../../utils/request-utils';
 import { parseResponse } from "../../utils/response-utils";
 
 export const WEATHER_DISPLAY_REDUCER = "weatherDisplayReducer";
@@ -9,6 +8,7 @@ const initialWeatherState = fromJS({
   data: "empty",
   cityID: -1,
   cached: [],
+  tenor: "empty"
 });
 
 export const weatherDisplayReducer = (state = initialWeatherState, action) => {
@@ -29,6 +29,10 @@ export const weatherDisplayReducer = (state = initialWeatherState, action) => {
     }
     case DISPLAY_CACHED: {
       return state.set("data", action.payload);
+    }
+    case TENOR_READY: { // TODO: zrobić tak by nie bugowało się to z cachowaniem
+      console.log("ODP OD TENOR:", action.payload);
+      return state.set('tenor', action.payload.results);
     }
     default:
       return state;

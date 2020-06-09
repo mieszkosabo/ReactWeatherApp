@@ -1,10 +1,11 @@
 import { ajax } from "rxjs/ajax";
-import { weatherReady, fetchWeatherRejected } from "./actions";
-import { FETCH_WEATHER } from "../const";
+import { weatherReady, fetchWeatherRejected, tenorReady } from "./actions";
+import { FETCH_WEATHER, WEATHER_READY } from "../const";
 import { createAPICallCity } from "../../utils/request-utils";
 import { mergeMap, map, catchError } from "rxjs/operators";
 import { of } from "rxjs";
 import { ofType } from "redux-observable";
+import { createTenorCall, mostCommonDescription } from "../../utils/tenorUtils";
 
 
 //TODO: dodać request cancellation, gdy przyjdzie kolejne żądanie
@@ -23,5 +24,17 @@ export const fetchWeatherEpic = (action$) =>
     )
   );
 
-  //TODO: dodać epica offType WEATHER_READY
-  // który robi ajaxa z tenorem odpowiednim.
+  export const fetchTenorEpic = (action$) =>
+  action$.pipe(
+    ofType(WEATHER_READY),
+    mergeMap((action) =>
+      ajax
+        .getJSON(
+          createTenorCall(mostCommonDescription(action.payload.daily))
+        )
+        .pipe(
+          map((response) => tenorReady(response)),
+          catchError((error) => of(fetchWeatherRejected(error))) //TODO: zamienić na tenor coś
+        )
+    )
+  );

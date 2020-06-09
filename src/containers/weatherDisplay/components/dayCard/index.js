@@ -13,9 +13,9 @@ const cityNameByID = (id) => {
     .name;
 }
 
-export const DayCard = ({ days }) => (
+export const DayCard = ({ days, gif }) => (
   <DayCardWrapper>
-    <TenorGif url={"https://media.tenor.com/images/999a02208d51938c7d7496dcf2379920/tenor.gif"} />
+    <TenorGif url={gif} />
     <CityNameHeader city={cityNameByID(days.cityID)} niceStatus={days.niceStatus.daily} />
     <Table days={days.daily} />
   </DayCardWrapper>

@@ -3,7 +3,8 @@ import { cityToID } from '../../utils/request-utils';
 import { fetchWeather, fetchWeatherRejected, displayCached } from './actions';
 import { cachedSelector } from './selectors';
 
-
+//TODO: może coś bardziej fancy niż returnowanie undefined
+// ew zmienić nazwę heh
 const isCachedWeather = (store, id) => {
   const state = store.getState();
   const cached = cachedSelector(state);
@@ -11,6 +12,9 @@ const isCachedWeather = (store, id) => {
   return cached.find((city) => city.cityID == id);
 }
 
+// Here we listen for TRY_FETCH actions and decide
+// whether to try to fetch data from API or diplay
+// cached data or even dispach error while fetching
 export const verifyUserInput = (store) => (next) => (action) => {
   if (action.type !== TRY_FETCH) {
     return next(action);

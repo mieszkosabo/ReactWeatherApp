@@ -22,3 +22,7 @@ export const cityIDSelector = createSelector(getData, (state) =>
 export const cachedSelector = createSelector(getData, (state) =>
   state.get("cached")
 );
+
+export const tenorSelector = createSelector(getData, (state) =>
+  state.get("tenor")
+);
