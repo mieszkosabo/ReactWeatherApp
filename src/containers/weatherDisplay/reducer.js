@@ -1,16 +1,18 @@
-import { FETCH_WEATHER, WEATHER_READY, FETCH_WEATHER_REJECTED, DISPLAY_CACHED, TENOR_READY, SWITCH_TENOR } from "../const";
+import { FETCH_WEATHER, WEATHER_READY, FETCH_WEATHER_REJECTED, DISPLAY_CACHED, TENOR_READY, SWITCH_TENOR, DISPLAY_CACHED_TENOR } from "../const";
 import { fromJS, get } from "immutable";
 import { parseResponse } from "../../utils/response-utils";
 import { getGifUrl } from "../../utils/tenorUtils";
+import { cityToID } from "../../utils/request-utils";
 
 export const WEATHER_DISPLAY_REDUCER = "weatherDisplayReducer";
 
 const initialWeatherState = fromJS({
   data: "empty",
   cityID: -1,
-  cached: [],
   tenor: "empty",
-  currTenor: "empty"
+  currTenor: "empty",
+  cachedWeather: [],
+  cachedTenor: [],
 });
 
 export const weatherDisplayReducer = (state = initialWeatherState, action) => {
@@ -19,11 +21,10 @@ export const weatherDisplayReducer = (state = initialWeatherState, action) => {
       return state.merge({data: "fetching!", cityID: action.payload});
     }
     case WEATHER_READY: {
-      console.log(action.payload);
       const parsed = parseResponse(action.payload, state.get('cityID'));
-      console.log("parsed in rdy:", parsed);
+      console.log("yooooooooooooooo czemu");
       return state
-        .update("cached", (cached) => [...cached, parsed])
+        .update("cachedWeather", (cached) => [...cached, parsed])
         .set("data", parsed);
     }
     case FETCH_WEATHER_REJECTED: {
@@ -31,14 +32,27 @@ export const weatherDisplayReducer = (state = initialWeatherState, action) => {
     }
     case DISPLAY_CACHED: {
       return state.set("data", action.payload);
-    } //TODO: nowy reducer odpowiedzialny za cache'owanie.
-    case TENOR_READY: { // FIXME: zrobić tak by nie bugowało się to z cachowaniem
+    }
+    case DISPLAY_CACHED_TENOR: {
+      return state.set("tenor", action.payload.tenor);
+    }
+    case TENOR_READY: {
       console.log("ODP OD TENOR:", action.payload);
-      return state.set('tenor', action.payload.results);
+      return state
+        .set('tenor', action.payload.results)
+        .update("cachedTenor", (cached) => 
+          [
+            ...cached,
+            {
+              cityID: state.get('cityID'),
+              tenor: action.payload.results
+            },
+          ]
+        );
     }
     case SWITCH_TENOR: {
       const tenorsArr = state.get('tenor');
-      console.log(getGifUrl(tenorsArr));
+      console.log("tuuu:", tenorsArr);
       return state.set('currTenor', getGifUrl(tenorsArr));
     }
     default:

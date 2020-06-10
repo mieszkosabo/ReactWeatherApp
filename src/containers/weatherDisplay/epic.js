@@ -1,6 +1,6 @@
 import { ajax } from "rxjs/ajax";
 import { weatherReady, fetchWeatherRejected, tenorReady, switchTenor } from "./actions";
-import { FETCH_WEATHER, WEATHER_READY, TENOR_READY } from "../const";
+import { FETCH_WEATHER, WEATHER_READY, TENOR_READY, DISPLAY_CACHED_TENOR } from "../const";
 import { createAPICallCity } from "../../utils/request-utils";
 import { mergeMap, map, catchError, takeUntil } from "rxjs/operators";
 import { of, interval } from "rxjs";
@@ -41,11 +41,11 @@ export const fetchWeatherEpic = (action$) =>
 
   export const tenorSwitcher = (action$) =>
   action$.pipe(
-    ofType(TENOR_READY),
+    ofType(TENOR_READY, DISPLAY_CACHED_TENOR),
     mergeMap(() => interval(10000).pipe( //TODO: zmienić na 30s
       map((time) => switchTenor(time)),
       takeUntil(action$.pipe(
-        ofType(TENOR_READY)
+        ofType(TENOR_READY, DISPLAY_CACHED_TENOR)
       ))
     ))
   );

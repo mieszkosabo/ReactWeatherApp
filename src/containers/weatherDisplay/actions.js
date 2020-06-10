@@ -1,4 +1,4 @@
-import {DISPLAY_CACHED, FETCH_WEATHER, FETCH_WEATHER_REJECTED, TENOR_READY, WEATHER_READY, SWITCH_TENOR} from '../const';
+import {DISPLAY_CACHED, FETCH_WEATHER, FETCH_WEATHER_REJECTED, TENOR_READY, WEATHER_READY, SWITCH_TENOR, DISPLAY_CACHED_TENOR} from '../const';
 
 export const fetchWeather = (city_id) => ({
   type: FETCH_WEATHER,
@@ -20,12 +20,17 @@ export const displayCached = (cached) => ({
   payload: cached,
 });
 
+export const displayCachedTenor = (cached) => ({
+  type: DISPLAY_CACHED_TENOR,
+  payload: cached,
+});
+
 export const tenorReady = (res) => ({
   type: TENOR_READY,
   payload: res,
-})
+});
 
 export const switchTenor = (res) => ({
   type: SWITCH_TENOR,
   payload: res,
-})
+});
