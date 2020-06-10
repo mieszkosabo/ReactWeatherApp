@@ -24,5 +24,5 @@ export const cachedSelector = createSelector(getData, (state) =>
 );
 
 export const tenorSelector = createSelector(getData, (state) =>
-  state.get("tenor")
+  state.get("currTenor")
 );

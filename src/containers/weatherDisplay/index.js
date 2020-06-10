@@ -1,4 +1,3 @@
-import {head, pipe, prop, nth, length} from 'rambda';
 import React from 'react';
 import Loader from 'react-loader-spinner';
 import {useSelector} from 'react-redux';
@@ -8,9 +7,8 @@ import {dataSelector, tenorSelector} from './selectors';
 
 export const WeatherDisplay = () => {
   const data = useSelector(dataSelector);
-  const tenorGifs = useSelector(tenorSelector);
-  const getUrl = pipe(nth(Math.floor(Math.random() * 8)), prop('media'), head, prop('gif'), prop('url'));
-  const gif = tenorGifs === 'empty' ? undefined : getUrl(tenorGifs);
+  const gif = useSelector(tenorSelector);
+  
   //TODO: zaminieć empty i fetching na stałe
   if (data === 'empty' || data === 'fetching!' || data == 'ERROR WHILE FETCHING') {
     return (

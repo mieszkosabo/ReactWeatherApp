@@ -1,6 +1,7 @@
-import { FETCH_WEATHER, WEATHER_READY, FETCH_WEATHER_REJECTED, DISPLAY_CACHED, TENOR_READY } from "../const";
-import { fromJS } from "immutable";
+import { FETCH_WEATHER, WEATHER_READY, FETCH_WEATHER_REJECTED, DISPLAY_CACHED, TENOR_READY, SWITCH_TENOR } from "../const";
+import { fromJS, get } from "immutable";
 import { parseResponse } from "../../utils/response-utils";
+import { getGifUrl } from "../../utils/tenorUtils";
 
 export const WEATHER_DISPLAY_REDUCER = "weatherDisplayReducer";
 
@@ -8,7 +9,8 @@ const initialWeatherState = fromJS({
   data: "empty",
   cityID: -1,
   cached: [],
-  tenor: "empty"
+  tenor: "empty",
+  currTenor: "empty"
 });
 
 export const weatherDisplayReducer = (state = initialWeatherState, action) => {
@@ -29,10 +31,15 @@ export const weatherDisplayReducer = (state = initialWeatherState, action) => {
     }
     case DISPLAY_CACHED: {
       return state.set("data", action.payload);
-    }
-    case TENOR_READY: { // TODO: zrobić tak by nie bugowało się to z cachowaniem
+    } //TODO: nowy reducer odpowiedzialny za cache'owanie.
+    case TENOR_READY: { // FIXME: zrobić tak by nie bugowało się to z cachowaniem
       console.log("ODP OD TENOR:", action.payload);
       return state.set('tenor', action.payload.results);
+    }
+    case SWITCH_TENOR: {
+      const tenorsArr = state.get('tenor');
+      console.log(getGifUrl(tenorsArr));
+      return state.set('currTenor', getGifUrl(tenorsArr));
     }
     default:
       return state;

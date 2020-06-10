@@ -1,9 +1,9 @@
 import { ajax } from "rxjs/ajax";
-import { weatherReady, fetchWeatherRejected, tenorReady } from "./actions";
-import { FETCH_WEATHER, WEATHER_READY } from "../const";
+import { weatherReady, fetchWeatherRejected, tenorReady, switchTenor } from "./actions";
+import { FETCH_WEATHER, WEATHER_READY, TENOR_READY } from "../const";
 import { createAPICallCity } from "../../utils/request-utils";
-import { mergeMap, map, catchError } from "rxjs/operators";
-import { of } from "rxjs";
+import { mergeMap, map, catchError, takeUntil } from "rxjs/operators";
+import { of, interval } from "rxjs";
 import { ofType } from "redux-observable";
 import { createTenorCall, mostCommonDescription } from "../../utils/tenorUtils";
 
@@ -37,4 +37,15 @@ export const fetchWeatherEpic = (action$) =>
           catchError((error) => of(fetchWeatherRejected(error))) //TODO: zamienić na tenor coś
         )
     )
+  );
+
+  export const tenorSwitcher = (action$) =>
+  action$.pipe(
+    ofType(TENOR_READY),
+    mergeMap(() => interval(10000).pipe( //TODO: zmienić na 30s
+      map((time) => switchTenor(time)),
+      takeUntil(action$.pipe(
+        ofType(TENOR_READY)
+      ))
+    ))
   );

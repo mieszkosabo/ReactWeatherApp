@@ -1,4 +1,4 @@
-import {defaultTo, head, inc, max, pipe, prop, reduce, toPairs} from 'rambda';
+import {defaultTo, head, inc, max, pipe, prop, reduce, toPairs, nth} from 'rambda';
 
 import {TENOR_KEY} from './consts';
 
@@ -21,3 +21,7 @@ const getDesc = pipe(prop('weather'), head, prop('description'));
 
 export const mostCommonDescription = (days) =>
     (mode(days.map(day => getDesc(day))))
+
+
+const randomFromArray = (arr) => nth(Math.floor(Math.random() * arr.length), arr);
+export const getGifUrl = pipe(randomFromArray, prop('media'), head, prop('gif'), prop('url'));
