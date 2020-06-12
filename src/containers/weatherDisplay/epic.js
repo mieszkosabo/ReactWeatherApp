@@ -1,7 +1,7 @@
 import { ajax } from "rxjs/ajax";
 import { weatherReady, fetchWeatherRejected, tenorReady, switchTenor } from "./actions";
-import { FETCH_WEATHER, WEATHER_READY, TENOR_READY, DISPLAY_CACHED_TENOR } from "../const";
-import { createAPICallCity } from "../../utils/request-utils";
+import { FETCH_WEATHER, WEATHER_READY, TENOR_READY, DISPLAY_CACHED_TENOR, FETCH_GEO } from "../const";
+import { createAPICallCity, createAPICallCoordinates } from "../../utils/request-utils";
 import { mergeMap, map, catchError, takeUntil } from "rxjs/operators";
 import { of, interval } from "rxjs";
 import { ofType } from "redux-observable";
@@ -24,7 +24,23 @@ export const fetchWeatherEpic = (action$) =>
     )
   );
 
-  export const fetchTenorEpic = (action$) =>
+export const fetchGeoWeatherEpic = (action$) => {
+  console.log("ayy yo lets goo!");
+  return action$.pipe(
+    ofType(FETCH_GEO),
+    mergeMap((action) =>
+      ajax
+        .getJSON(
+          createAPICallCoordinates(action.payload.lat, action.payload.lon, 'current')
+        )
+        .pipe(
+          map((response) => weatherReady(response)),
+          catchError((error) => of(fetchWeatherRejected(error)))
+        )
+    )
+  )};
+
+export const fetchTenorEpic = (action$) =>
   action$.pipe(
     ofType(WEATHER_READY),
     mergeMap((action) =>
@@ -39,7 +55,7 @@ export const fetchWeatherEpic = (action$) =>
     )
   );
 
-  export const tenorSwitcher = (action$) =>
+export const tenorSwitcher = (action$) =>
   action$.pipe(
     ofType(TENOR_READY, DISPLAY_CACHED_TENOR),
     mergeMap(() => interval(10000).pipe( //TODO: zmienić na 30s

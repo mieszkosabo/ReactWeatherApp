@@ -8,3 +8,4 @@ export const DISPLAY_CACHED = 'DISPLAY_CACHED';
 export const TENOR_READY = 'TENOR_READY';
 export const SWITCH_TENOR = 'SWITCH_TENOR';
 export const DISPLAY_CACHED_TENOR = 'DISPLAY_CACHED_TENOR';
+export const FETCH_GEO = 'FETCH_GEO';

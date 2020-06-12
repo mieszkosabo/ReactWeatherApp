@@ -1,4 +1,4 @@
-import { INPUT_CHANGE, FETCH_WEATHER, TRY_FETCH } from "../const";
+import { INPUT_CHANGE, FETCH_GEO, TRY_FETCH } from "../const";
 
 export const changeInput = (newTerm) => ({
   type: INPUT_CHANGE,
@@ -8,4 +8,9 @@ export const changeInput = (newTerm) => ({
 export const tryFetch = (city) => ({
   type: TRY_FETCH,
   payload: city,
+});
+
+export const fetchGeoWeather = (lat, lon) => ({
+  type: FETCH_GEO,
+  payload: {lat: lat, lon: lon},
 });

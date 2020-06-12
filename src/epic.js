@@ -1,4 +1,4 @@
 import { combineEpics } from "redux-observable";
-import { fetchWeatherEpic, fetchTenorEpic, tenorSwitcher } from "./containers/weatherDisplay/epic";
+import { fetchWeatherEpic, fetchTenorEpic, tenorSwitcher, fetchGeoWeatherEpic } from "./containers/weatherDisplay/epic";
 
-export const rootEpic = combineEpics(fetchWeatherEpic, fetchTenorEpic, tenorSwitcher);
+export const rootEpic = combineEpics(fetchWeatherEpic, fetchTenorEpic, tenorSwitcher, fetchGeoWeatherEpic);
