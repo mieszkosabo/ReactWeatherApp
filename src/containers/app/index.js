@@ -2,11 +2,10 @@ import React from "react";
 import { Searchbar } from "../searchbar";
 import { WeatherDisplay } from "../weatherDisplay";
 import { ThemeProvider } from "styled-components";
-import { lightTheme } from "../../themes";
+import { lightTheme, darkTheme } from "../../themes";
 import { GlobalStyle } from "../../globalStyles";
-import { Button } from "../searchbar/components";
 import { useDispatch, useSelector } from "react-redux";
-import { toggleAction, fetchState } from './actions';
+import { toggleAction } from './actions';
 import { themeSelector } from "./selectors";
 import { ButtonWrapper } from "../searchbar/components/button/ButtonWrapper";
 
@@ -16,7 +15,7 @@ export const App = () => {
   const theme = useSelector(themeSelector);
   console.log(theme);
   return (
-  <ThemeProvider theme={theme}>
+  <ThemeProvider theme={theme === 'light' ? lightTheme : darkTheme}>
     <>
       <GlobalStyle />
       <ButtonWrapper onClick={() => toggleTheme()}>toggle theme </ButtonWrapper>
