@@ -1,4 +1,4 @@
-import { FETCH_WEATHER, WEATHER_READY, FETCH_WEATHER_REJECTED, DISPLAY_CACHED, TENOR_READY, SWITCH_TENOR, DISPLAY_CACHED_TENOR } from "../const";
+import { FETCH_WEATHER, WEATHER_READY, FETCH_WEATHER_REJECTED, DISPLAY_CACHED, TENOR_READY, SWITCH_TENOR, DISPLAY_CACHED_TENOR, FETCH_GEO } from "../const";
 import { fromJS, get } from "immutable";
 import { parseResponse } from "../../utils/response-utils";
 import { getGifUrl } from "../../utils/tenorUtils";
@@ -10,7 +10,7 @@ const initialWeatherState = fromJS({
   data: "empty",
   cityID: -1,
   tenor: "empty",
-  currTenor: "empty",
+  currTenor: undefined,
   cachedWeather: [],
   cachedTenor: [],
 });
@@ -22,10 +22,12 @@ export const weatherDisplayReducer = (state = initialWeatherState, action) => {
     }
     case WEATHER_READY: {
       const parsed = parseResponse(action.payload, state.get('cityID'));
-      console.log("yooooooooooooooo czemu");
       return state
         .update("cachedWeather", (cached) => [...cached, parsed])
         .set("data", parsed);
+    }
+    case FETCH_GEO: {
+      return state.set("cityID", -1);
     }
     case FETCH_WEATHER_REJECTED: {
       return state.set("data", "ERROR WHILE FETCHING");
@@ -40,6 +42,7 @@ export const weatherDisplayReducer = (state = initialWeatherState, action) => {
       console.log("ODP OD TENOR:", action.payload);
       return state
         .set('tenor', action.payload.results)
+        .set('currTenor', getGifUrl(action.payload.results))
         .update("cachedTenor", (cached) => 
           [
             ...cached,
@@ -52,7 +55,6 @@ export const weatherDisplayReducer = (state = initialWeatherState, action) => {
     }
     case SWITCH_TENOR: {
       const tenorsArr = state.get('tenor');
-      console.log("tuuu:", tenorsArr);
       return state.set('currTenor', getGifUrl(tenorsArr));
     }
     default:
