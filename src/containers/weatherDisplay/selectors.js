@@ -30,3 +30,11 @@ export const cachedTenorSelector = createSelector(getData, (state) =>
 export const tenorSelector = createSelector(getData, (state) =>
   state.get("currTenor")
 );
+
+export const autocompleteSelector = createSelector(getCity, (state) =>
+  state.get("citiesForAutocomplete")
+);
+
+export const shouldRenderAutocompleteSelector = createSelector(getCity, (state) =>
+  state.get("displayAutocomplete")
+);
