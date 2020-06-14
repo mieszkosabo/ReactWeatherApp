@@ -8,6 +8,7 @@ import {
   shouldRenderAutocompleteSelector,
 } from "../weatherDisplay/selectors";
 import { Input, Button } from "./components";
+import { theme } from "styled-tools";
 
 export const Searchbar = () => {
   const dispatch = useDispatch();
@@ -31,16 +32,17 @@ export const Searchbar = () => {
       console.log("no geolocation support!");
     }
   };
+  //TODO: jak połączyć autocomplete z theme?
   return (
     <>
       <form
         className="searchbar"
         onSubmit={(event) => onFormSubmit(event, city)}
       >
-        <Input
+        {/* <Input
           placeholder="ayo lets go"
           onChange={(event) => onTermChange(event.target.value)}
-        />
+        /> */}
         <Autocomplete
           shouldItemRender={() => shouldRender}
           getItemValue={(item) => item.name}
@@ -53,6 +55,18 @@ export const Searchbar = () => {
           value={city}
           onChange={(event) => onTermChange(event.target.value)}
           onSelect={(val) => onTermChange(val)}
+          inputProps={{
+            style: {
+              color: `${theme("colors.text")}`, //FIXME: to nie działa niestety
+              color: "dimgray",
+              width: "80%",
+              background: "transparent",
+              fontSize: "2rem",
+              border: "0",
+              borderBottom: `2px solid dimgray`,
+            },
+            placeholder: "select city",
+          }}
         />
         <Button btnName="show" />
       </form>

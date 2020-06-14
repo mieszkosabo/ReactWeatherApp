@@ -1,6 +1,7 @@
 import styled from "styled-components";
-import { theme, switchProp } from "styled-tools";
+import { theme } from "styled-tools";
 
+console.log("w inpucie", theme('colors.text'));
 export const InputWrapper = styled.input`
   color: ${theme('colors.text')};
   font-size: 2rem;
