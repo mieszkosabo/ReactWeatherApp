@@ -4,6 +4,8 @@ export const darkColors = {
   text: "snow",
   textInverted: "black",
   inputBackground: "transparent",
+  highlitedText: "lightgray",
+  notHighlitedText: "gray",
 };
 
 export const lightColors = {
@@ -12,4 +14,6 @@ export const lightColors = {
   text: "dimgray",
   textInverted: "black",
   inputBackground: "transparent",
+  highlitedText: "lightgray",
+  notHighlitedText: "white",
 };
