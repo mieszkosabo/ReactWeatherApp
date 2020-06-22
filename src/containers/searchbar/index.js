@@ -7,8 +7,7 @@ import {
   autocompleteSelector,
   shouldRenderAutocompleteSelector,
 } from "../weatherDisplay/selectors";
-import { Input, Button } from "./components";
-import { theme } from "styled-tools";
+import { Button } from "./components";
 import { useTheme } from "styled-components";
 
 export const Searchbar = () => {

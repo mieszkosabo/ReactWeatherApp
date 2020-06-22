@@ -1,7 +1,8 @@
 import styled from "styled-components";
-import { theme, switchProp } from "styled-tools";
+import { theme } from "styled-tools";
 
 export const DayCardWrapper = styled.div`
+  color: ${theme('colors.tableColor')};
   margin: 0 auto;
   margin-top 5%;
   padding: 5px 30px;
