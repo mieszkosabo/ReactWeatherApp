@@ -58,7 +58,7 @@ export const fetchTenorEpic = (action$) =>
 export const tenorSwitcher = (action$) =>
   action$.pipe(
     ofType(TENOR_READY, DISPLAY_CACHED_TENOR),
-    mergeMap(() => interval(10000).pipe( //TODO: zmienić na 30s
+    mergeMap(() => interval(30000).pipe(
       map((time) => switchTenor(time)),
       takeUntil(action$.pipe(
         ofType(TENOR_READY, DISPLAY_CACHED_TENOR)

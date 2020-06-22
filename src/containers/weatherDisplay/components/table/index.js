@@ -1,6 +1,5 @@
 import React from "react";
 import { TableWrapper } from "./tableWrapper";
-import { concat } from 'rambda';
 
 const celcius = (temp) => `${temp} °C`
 

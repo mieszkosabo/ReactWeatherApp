@@ -1,10 +1,11 @@
 import React from "react";
 import { DayCardWrapper } from "./DayCardWrapper";
 import { Table } from "../table";
+import { HourTable } from "../hourTable";
 import { CityNameHeader } from "../cityNameHeader";
 import { citiesList } from "../../../../assets";
 import { TenorGif } from "../TenorGif";
-import { defaultTo } from "rambda";
+import { defaultTo, isNil } from "rambda";
 
 const defaultName = defaultTo({ name: "your location" });
 const cityNameByID = (id) => {
@@ -15,13 +16,22 @@ const cityNameByID = (id) => {
   ).name;
 };
 
-export const DayCard = ({ days, gif }) => (
+const dayOrHourTable = (days, hours) => {
+  console.log("day or:", days, hours);
+  return isNil(days) ? (
+    <HourTable hours={hours} />
+  ) : (
+    <Table days={days} />
+  );
+};
+
+export const DayCard = ({ data, days, hours, gif }) => (
   <DayCardWrapper>
     <TenorGif url={gif} />
     <CityNameHeader
-      city={cityNameByID(days.cityID)}
-      niceStatus={days.niceStatus.daily}
+      city={cityNameByID(data.cityID)}
+      niceStatus={data.niceStatus.daily}
     />
-    <Table days={days.daily} />
+    {dayOrHourTable(days, hours)}
   </DayCardWrapper>
 );
