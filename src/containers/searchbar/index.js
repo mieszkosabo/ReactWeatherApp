@@ -44,7 +44,7 @@ export const Searchbar = () => {
           getItemValue={(item) => item.name}
           items={cities.toJS()}
           renderItem={(item, isHighlighted) => (
-            <div
+            <div key= {item.id}
               style={{
                 background: isHighlighted
                   ? theme.colors.highlitedText

@@ -29,7 +29,6 @@ export const WeatherDisplay = () => {
       </>
     );
   } else {
-    console.log(data);
     return (
       <>
         <MyLoader data= {data} />

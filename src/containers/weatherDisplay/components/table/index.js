@@ -8,30 +8,29 @@ export const Table = ({ days }) => (
     <tbody>
       <tr>
         <th>{""}</th>
-        {days.map((day) => (
-          <th>{day.day}</th>
+        {days.map((day, k) => (
+          <th key= {k}>{day.day}</th>
         ))}
       </tr>
       <tr>
         <td>{"min"}</td>
-        {days.map((day) => (
-          <td>{celcius(day.minTemp)}</td>
+        {days.map((day, k) => (
+          <td key= {k}>{celcius(day.minTemp)}</td>
         ))}
       </tr>
       <tr>
         <td>{"max"}</td>
-        {days.map((day) => (
-          <td>{celcius(day.maxTemp)}</td>
+        {days.map((day, k) => (
+          <td key= {k}>{celcius(day.maxTemp)}</td>
         ))}
       </tr>
       <tr>
         <td>{"avg"}</td>
-        {days.map((day) => (
-          <td>{celcius(day.avgTemp)}</td>
+        {days.map((day, k) => (
+          <td key= {k}>{celcius(day.avgTemp)}</td>
         ))}
       </tr>
     </tbody>
   </TableWrapper>
 );
 
-//TODO: dodoać keys
