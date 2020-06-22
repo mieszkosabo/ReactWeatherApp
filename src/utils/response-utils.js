@@ -1,7 +1,6 @@
 import { dayNames } from "./consts";
 import { curry, pipe } from "rambda";
 import { weatherNiceStatus } from "./niceWeather";
-export const sample = require("./sample_response.json");
 
 const convertUnixDatastamp = (arg, dt) => {
   const date = new Date(dt * 1000);

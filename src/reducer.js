@@ -9,9 +9,10 @@ import {
 } from "./containers/weatherDisplay/reducer";
 import { THEME_REDUCER, themeReducer } from "./containers/app/reducer";
 
-export default createReducer = () =>
-  combineReducers({
+export default function createReducer() {
+  return combineReducers({
     [SEARCHBAR_REDUCER]: searchbarReducer,
     [WEATHER_DISPLAY_REDUCER]: weatherDisplayReducer,
     [THEME_REDUCER]: themeReducer,
   });
+}

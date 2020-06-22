@@ -21,17 +21,18 @@ export const WeatherDisplay = () => {
   if (
     data === EMPTY ||
     data === FETCHING ||
-    data == FETCHING_ERROR
+    data === FETCHING_ERROR
   ) {
     return (
       <>
-        <MyLoader />
+        <MyLoader data= {data} />
       </>
     );
   } else {
+    console.log(data);
     return (
       <>
-        <MyLoader />
+        <MyLoader data= {data} />
         {dayOrHourCard(data, isDaily)}
       </>
     );
