@@ -1,10 +1,10 @@
 import React from "react";
-import Loader from "react-loader-spinner";
 import { useSelector } from "react-redux";
-
+import { MyLoader } from "./components/loader";
 import { DayCard } from "./components/dayCard";
 import { dataSelector, tenorSelector } from "./selectors";
 import { forecastSelector } from "../app/selectors";
+import { EMPTY, FETCHING, FETCHING_ERROR } from "../const";
 
 export const WeatherDisplay = () => {
   const data = useSelector(dataSelector);
@@ -13,38 +13,25 @@ export const WeatherDisplay = () => {
 
   const dayOrHourCard = (data, isDaily) =>
     isDaily ? (
-      <DayCard data={data} days={data.daily} gif= {gif} />
+      <DayCard data={data} days={data.daily} gif={gif} />
     ) : (
-      <DayCard data={data} hours={data.hourly} gif= {gif}/>
+      <DayCard data={data} hours={data.hourly} gif={gif} />
     );
 
-  //TODO: zaminieć empty i fetching na stałe
   if (
-    data === "empty" ||
-    data === "fetching!" ||
-    data == "ERROR WHILE FETCHING"
+    data === EMPTY ||
+    data === FETCHING ||
+    data == FETCHING_ERROR
   ) {
     return (
       <>
-        <Loader
-          type="ThreeDots"
-          color="#00BFFF"
-          height={100}
-          width={100}
-          visible={data === "fetching!"}
-        />
+        <MyLoader />
       </>
     );
   } else {
     return (
       <>
-        <Loader
-          type="ThreeDots"
-          color="#00BFFF"
-          height={100}
-          width={100}
-          visible={data === "fetching"}
-        />
+        <MyLoader />
         {dayOrHourCard(data, isDaily)}
       </>
     );

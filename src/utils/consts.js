@@ -1,11 +1,11 @@
-export const API_KEY = "cae1017d61ae0e84ab136ed94da3423e";
-export const dayNames = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
-export const RAIN = 'Rain';
+export const API_KEY = "cae1017d61ae0e84ab136ed94da3423e"; // OpenWeather
+export const dayNames = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+export const RAIN = "Rain";
 export const MAX_NICE = 30;
 export const MIN_NICE = 15;
 export const MAX_NICE_AVG = 25;
 export const MIN_MAX_AVG = 18;
-export const NICE = 'NICE';
-export const PASSABLE = 'PASSABLE';
+export const NICE = "NICE";
+export const PASSABLE = "PASSABLE";
 export const NOT_NICE = "NOT NICE";
 export const TENOR_KEY = "V9HPZU9VUORY";

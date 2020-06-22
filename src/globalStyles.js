@@ -7,7 +7,6 @@ export const GlobalStyle = createGlobalStyle`
     #root {
         width: 100%;
         height: 100%;
-        resize: both;
         color: ${theme('colors.text')};
         background: ${theme('colors.background')};
         

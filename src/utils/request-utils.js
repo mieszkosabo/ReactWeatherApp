@@ -10,10 +10,10 @@ export const createAPICallCity = (city_id, exclude) => {
 };
 
 export const cityToID = (cityName) => {
-  const city = citiesList.find((city) => city.name.toUpperCase() === cityName.toUpperCase());
-  console.log(city);
+  const city = citiesList.find(
+    (city) => city.name.toUpperCase() === cityName.toUpperCase()
+  );
   if (city === undefined) {
-    console.log("rzucam")
     throw "city not on the list!";
   }
   return city.id;

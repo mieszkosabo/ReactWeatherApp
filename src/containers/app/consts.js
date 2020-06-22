@@ -1,2 +1,2 @@
-export const TOGGLE_THEME = 'TOGGLE_THEME';
-export const SWITCH_FORECAST = 'SWITCH_FORECAST';
+export const TOGGLE_THEME = "TOGGLE_THEME";
+export const SWITCH_FORECAST = "SWITCH_FORECAST";

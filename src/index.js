@@ -8,7 +8,6 @@ import { rootEpic } from "./epic";
 import { App } from "./containers/app";
 import { verifyUserInput } from './containers/weatherDisplay/middleware'
 
-//TODO: przerzucić konfigurację stora do innego pliku
 const DEBUG = true;
 let store, composeEnhancers;
 const epicMiddleware = createEpicMiddleware();
@@ -19,7 +18,7 @@ if (DEBUG) {
     reducer,
     undefined,
     composeEnhancers(applyMiddleware(verifyUserInput, epicMiddleware))
-  ); // TODO:middleware wew composeEnhancer
+  );
 } else {
   composeEnhancers = compose;
   store = createStore(

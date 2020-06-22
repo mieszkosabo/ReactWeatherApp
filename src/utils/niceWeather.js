@@ -1,6 +1,14 @@
-import { RAIN, MAX_NICE, MIN_NICE, MAX_NICE_AVG, MIN_MAX_AVG, NICE, PASSABLE, NOT_NICE } from "./consts";
+import {
+  RAIN,
+  MAX_NICE,
+  MIN_NICE,
+  MAX_NICE_AVG,
+  MIN_MAX_AVG,
+  NICE,
+  PASSABLE,
+  NOT_NICE,
+} from "./consts";
 
-// TODO: przetestować to i ew przerobić na rambdę for fun
 const noRainyDays = (days) => {
   for (const day of days) {
     if (day.main === RAIN) {
@@ -35,12 +43,12 @@ const niceMinMaxTemp = (days) => {
 export const weatherNiceStatus = (days) => {
   const conditionsPassed =
     noRainyDays(days) + niceAVGTemp(days) + niceMinMaxTemp(days);
-    switch(conditionsPassed) {
-      case 3:
-        return NICE;
-      case 2:
-        return PASSABLE;
-      default: 
-        return NOT_NICE;
-    }
+  switch (conditionsPassed) {
+    case 3:
+      return NICE;
+    case 2:
+      return PASSABLE;
+    default:
+      return NOT_NICE;
+  }
 };

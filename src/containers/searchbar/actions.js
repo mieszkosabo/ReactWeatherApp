@@ -1,4 +1,10 @@
-import { INPUT_CHANGE, FETCH_GEO, TRY_FETCH, CANCEL_AUTOCOMPLETE, UPDATE_AUTOCOMPLETE } from "../const";
+import {
+  INPUT_CHANGE,
+  FETCH_GEO,
+  TRY_FETCH,
+  CANCEL_AUTOCOMPLETE,
+  UPDATE_AUTOCOMPLETE,
+} from "../const";
 
 export const changeInput = (newTerm) => ({
   type: INPUT_CHANGE,
@@ -12,7 +18,7 @@ export const tryFetch = (city) => ({
 
 export const fetchGeoWeather = (lat, lon) => ({
   type: FETCH_GEO,
-  payload: {lat: lat, lon: lon},
+  payload: { lat: lat, lon: lon },
 });
 
 export const updateAutocomplete = (term) => ({

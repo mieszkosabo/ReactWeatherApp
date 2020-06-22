@@ -1,1 +1,1 @@
-export const citiesList = require('./city.list.json');
+export const citiesList = require("./city.list.json");

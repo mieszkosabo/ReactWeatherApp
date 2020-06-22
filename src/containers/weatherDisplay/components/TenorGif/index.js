@@ -1,6 +1,4 @@
-import React from 'react';
-import { TenorWrapper } from './TenorWrapper';
+import React from "react";
+import { TenorWrapper } from "./TenorWrapper";
 
-export const TenorGif = ({url}) => (
-  <TenorWrapper src={url} />
-)
+export const TenorGif = ({ url }) => <TenorWrapper src={url} />;

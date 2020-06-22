@@ -16,14 +16,8 @@ const cityNameByID = (id) => {
   ).name;
 };
 
-const dayOrHourTable = (days, hours) => {
-  console.log("day or:", days, hours);
-  return isNil(days) ? (
-    <HourTable hours={hours} />
-  ) : (
-    <Table days={days} />
-  );
-};
+const dayOrHourTable = (days, hours) =>
+  isNil(days) ? <HourTable hours={hours} /> : <Table days={days} />;
 
 export const DayCard = ({ data, days, hours, gif }) => (
   <DayCardWrapper>

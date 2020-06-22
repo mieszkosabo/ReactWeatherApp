@@ -1,5 +1,6 @@
 import React from "react";
 import { TableWrapper } from "../table/tableWrapper";
+import { celcius } from "../table";
 
 export const HourTable = ({ hours }) => (
   <TableWrapper>
@@ -13,9 +14,11 @@ export const HourTable = ({ hours }) => (
         <tr>
           <th>{hour.day}</th>
           <th>{hour.hour}</th>
-          <th>{hour.avgTemp}</th>
+          <th>{celcius(hour.avgTemp)}</th>
         </tr>
       ))}
     </tbody>
   </TableWrapper>
 );
+
+//TODO: keys
