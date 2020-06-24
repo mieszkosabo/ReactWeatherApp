@@ -6,6 +6,7 @@ import {
   WEATHER_READY,
   SWITCH_TENOR,
   DISPLAY_CACHED_TENOR,
+  FETCH_TENOR_REJECTED,
 } from "../const";
 
 export const fetchWeather = (city_id) => ({
@@ -20,6 +21,11 @@ export const weatherReady = (data) => ({
 
 export const fetchWeatherRejected = (error) => ({
   type: FETCH_WEATHER_REJECTED,
+  payload: error,
+});
+
+export const fetchTenorRejected = (error) => ({
+  type: FETCH_TENOR_REJECTED,
   payload: error,
 });
 

@@ -10,6 +10,7 @@ import {
   FETCHING,
   FETCHING_ERROR,
   EMPTY,
+  FETCH_TENOR_REJECTED,
 } from "../const";
 import { fromJS } from "immutable";
 import { parseResponse } from "../../utils/response-utils";
@@ -42,6 +43,9 @@ export const weatherDisplayReducer = (state = initialWeatherState, action) => {
     }
     case FETCH_WEATHER_REJECTED: {
       return state.set("data", FETCHING_ERROR);
+    }
+    case FETCH_TENOR_REJECTED: {
+      return state.set("currTenor", undefined);
     }
     case DISPLAY_CACHED: {
       return state.set("data", action.payload);
