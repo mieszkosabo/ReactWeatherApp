@@ -18,6 +18,7 @@ export const App = () => {
     <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
       <>
         <GlobalStyle />
+        <div>
         <ButtonWrapper onClick={() => toggleTheme()}>
           toggle theme{" "}
         </ButtonWrapper>
@@ -25,6 +26,8 @@ export const App = () => {
           {" "}
           switch forecast display{" "}
         </ButtonWrapper>
+        </div>
+        
         <Searchbar />
         <WeatherDisplay />
       </>

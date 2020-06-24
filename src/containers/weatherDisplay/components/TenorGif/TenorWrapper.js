@@ -5,4 +5,5 @@ export const TenorWrapper = styled.img`
   margin-left: auto;
   margin-right: auto;
   width: 50%;
+  max-height: 270px;
 `;

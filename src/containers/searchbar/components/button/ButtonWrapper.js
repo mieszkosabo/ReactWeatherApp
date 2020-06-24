@@ -6,4 +6,5 @@ export const ButtonWrapper = styled.button`
   border: 2px solid ${theme("colors.text")};
   font-size 1rem;
   background: transparent;
+  margin: 5px;
   `;

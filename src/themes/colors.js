@@ -11,7 +11,7 @@ export const darkColors = {
 
 export const lightColors = {
   background:
-    "linear-gradient(187deg, rgba(217,202,202,1) 0%, rgba(106,61,61,1) 100%)",
+    "linear-gradient(180deg, rgba(246,243,243,1) 0%, rgba(148,130,147,1) 100%);",
   text: "dimgray",
   tableColor: "rgb(42,40,40)",
   textInverted: "black",
